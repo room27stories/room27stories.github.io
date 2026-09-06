@@ -44,8 +44,8 @@ a{color:inherit;text-decoration:none;}
 /* TOUR-STYLE EXPANDABLE CARDS */
 .tour-grid{
   display:grid;
-  grid-template-columns:repeat(auto-fill,minmax(170px,1fr));
-  gap:16px;
+  grid-template-columns:repeat(auto-fill,minmax(250px,1fr));
+  gap:20px;
   align-items:start;
 }
 .tour-card{
@@ -68,23 +68,18 @@ a{color:inherit;text-decoration:none;}
   color:var(--muted);font-family:'Cinzel',serif;font-size:11px;letter-spacing:.06em;text-align:center;
 }
 .tour-media.wide .tour-noimg{aspect-ratio:16/9;}
-.tour-label{
-  position:absolute;left:0;right:0;bottom:0;
-  padding:22px 12px 12px;
-  background:linear-gradient(180deg, transparent, rgba(0,0,0,0.88) 65%);
-}
-.tour-num{font-family:'Cinzel',serif;font-size:10px;color:var(--gold);letter-spacing:.08em;margin-bottom:3px;}
-.tour-title{font-family:'Cinzel',serif;font-weight:700;font-size:14px;color:#fff;line-height:1.25;}
 .tour-toggle-icon{
   position:absolute;top:10px;right:10px;
-  width:24px;height:24px;border-radius:50%;
+  width:26px;height:26px;border-radius:50%;
   background:rgba(7,7,13,0.75);
   border:1px solid var(--border);
   display:flex;align-items:center;justify-content:center;
-  font-size:15px;color:var(--gold);
+  font-size:16px;color:var(--gold);
   transition:transform .25s ease;
 }
 .tour-card.open .tour-toggle-icon{transform:rotate(45deg);}
+.tour-title-bar{padding:14px 16px 4px;}
+.tour-title{font-family:'Cinzel',serif;font-weight:700;font-size:15px;color:var(--text);line-height:1.35;}
 .tour-synopsis{
   max-height:0;
   overflow:hidden;
@@ -92,7 +87,7 @@ a{color:inherit;text-decoration:none;}
   transition:max-height .32s ease;
 }
 .tour-card.open .tour-synopsis{max-height:320px;}
-.tour-synopsis-inner{padding:14px 14px 16px;font-size:12.5px;color:var(--text);line-height:1.6;}
+.tour-synopsis-inner{padding:12px 16px 18px;font-size:13px;color:var(--text);line-height:1.6;}
 .tour-synopsis .ep-links{margin-top:10px;}
 
 /* NOTE ABOVE GRID */
