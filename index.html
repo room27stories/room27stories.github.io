@@ -123,6 +123,7 @@
             <div class="ep-links">
               <a class="yt btn-yt" href="https://youtu.be/-O4hzkXWmaE" target="_blank" rel="noopener">YouTube</a>
               <a class="btn-spotify" href="https://open.spotify.com/episode/0SFqSvQ4f3KgLpSjkwbfRS?si=DCdouS0YRsmQItDJ0qnM-g" target="_blank" rel="noopener">Spotify</a>
+              <button type="button" class="share-btn" data-title="As Crônicas do Abismo — Cap. 03: Antes que Anoiteça" data-url="https://youtu.be/-O4hzkXWmaE" aria-label="Compartilhar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="18" cy="5" r="2.3"/><circle cx="6" cy="12" r="2.3"/><circle cx="18" cy="19" r="2.3"/><path d="M8.1 10.7l7.7-4.2M8.1 13.3l7.7 4.2" stroke-linecap="round"/></svg></button>
             </div>
           </div>
         </div>
@@ -142,6 +143,7 @@
             <div class="ep-links">
               <a class="yt btn-yt" href="https://youtu.be/srFb17DG1bU" target="_blank" rel="noopener">YouTube</a>
               <a class="btn-spotify" href="https://open.spotify.com/episode/1bs4FfQhcOQx2MqzTR55WY?si=qsOX323kTwKheINhW3uqzg" target="_blank" rel="noopener">Spotify</a>
+              <button type="button" class="share-btn" data-title="As Crônicas do Abismo — Cap. 02: Saint Irvine" data-url="https://youtu.be/srFb17DG1bU" aria-label="Compartilhar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="18" cy="5" r="2.3"/><circle cx="6" cy="12" r="2.3"/><circle cx="18" cy="19" r="2.3"/><path d="M8.1 10.7l7.7-4.2M8.1 13.3l7.7 4.2" stroke-linecap="round"/></svg></button>
             </div>
           </div>
         </div>
@@ -161,6 +163,7 @@
             <div class="ep-links">
               <a class="yt btn-yt" href="https://youtu.be/gZEF4uvzlbM" target="_blank" rel="noopener">YouTube</a>
               <a class="btn-spotify" href="https://open.spotify.com/episode/1exfCPyHMflVNoiWHwEM3u?si=NBIkhFNjRLaQfG99yPt1BA" target="_blank" rel="noopener">Spotify</a>
+              <button type="button" class="share-btn" data-title="As Crônicas do Abismo — Cap. 01: Depois dos Portões" data-url="https://youtu.be/gZEF4uvzlbM" aria-label="Compartilhar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="18" cy="5" r="2.3"/><circle cx="6" cy="12" r="2.3"/><circle cx="18" cy="19" r="2.3"/><path d="M8.1 10.7l7.7-4.2M8.1 13.3l7.7 4.2" stroke-linecap="round"/></svg></button>
             </div>
           </div>
         </div>
@@ -197,6 +200,22 @@
 
 <section>
   <div class="wrap">
+    <div class="newsletter-box">
+      <div class="newsletter-copy">
+        <div class="subscribe-kicker">FIQUE POR DENTRO</div>
+        <div class="subscribe-title">Receba um aviso por e-mail a cada capítulo novo.</div>
+        <div class="subscribe-sub" style="display:block;margin-top:4px;">Sem spam — só um e-mail quando sai conteúdo novo.</div>
+      </div>
+      <form action="https://buttondown.email/api/emails/embed-subscribe/room27_stories" method="post" target="popupwindow" onsubmit="window.open('https://buttondown.email/room27_stories', 'popupwindow')" class="newsletter-form">
+        <input type="email" name="email" placeholder="seu@email.com" required>
+        <input type="submit" value="Inscrever">
+      </form>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
     <div class="section-head"><h2>Siga a Room 27 Stories</h2></div>
     <div class="follow-row">
       <a class="btn btn-yt" href="http://www.youtube.com/@room27_stories" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8ZM9.6 15.6V8.4l6.3 3.6-6.3 3.6Z"/></svg> YouTube</a>
@@ -215,12 +234,43 @@
 
 <script>
 (function(){
+  var toast = document.createElement('div');
+  toast.className = 'share-toast';
+  toast.textContent = 'Link copiado!';
+  document.body.appendChild(toast);
+  var toastTimer;
+  function showToast(msg){
+    toast.textContent = msg;
+    toast.classList.add('show');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(function(){ toast.classList.remove('show'); }, 2200);
+  }
+
+  document.querySelectorAll('.share-btn').forEach(function(btn){
+    btn.addEventListener('click', function(e){
+      e.stopPropagation();
+      var title = btn.getAttribute('data-title');
+      var url = btn.getAttribute('data-url');
+      if (navigator.share){
+        navigator.share({ title: title, url: url }).catch(function(){});
+      } else if (navigator.clipboard){
+        navigator.clipboard.writeText(url).then(function(){
+          showToast('Link copiado!');
+        }).catch(function(){
+          showToast(url);
+        });
+      } else {
+        showToast(url);
+      }
+    });
+  });
+
   var draggedCards = new WeakSet();
 
   document.querySelectorAll('.tour-card').forEach(function(card){
     card.addEventListener('click', function(e){
       if (draggedCards.has(card)) { draggedCards.delete(card); return; }
-      if (e.target.closest('a')) return;
+      if (e.target.closest('a') || e.target.closest('button')) return;
       card.classList.toggle('open');
     });
   });
@@ -269,5 +319,6 @@
 })();
 </script>
 
+<script data-goatcounter="https://room27stories.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 </body>
 </html>
