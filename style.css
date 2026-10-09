@@ -833,6 +833,8 @@ section{padding:64px 0;}
 .chapter-character-card>div{padding:11px 13px 12px;}
 .chapter-character-card h3{font-family:'Cinzel',serif;color:var(--gold);font-size:15px;margin-bottom:3px;}
 .chapter-character-card .lore-role{margin-bottom:0;}
+.chapter-character-card.no-photo{display:flex;align-items:center;justify-content:center;aspect-ratio:4/5;background:linear-gradient(150deg,var(--surface2),var(--surface));}
+.chapter-character-card.no-photo>div{padding:0 14px;text-align:center;}
 .characters-universe-link{display:inline-block;margin-top:20px;color:var(--gold);font-size:13px;}
 .characters-universe-link:hover{color:var(--text);}
 .reading-wrap{max-width:760px;}
